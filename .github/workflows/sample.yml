@@ -1,0 +1,15 @@
+name: 'Echoing'
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+  
+jobs:
+  echo_run:
+    runs-on:
+      - self-hosted
+
+    steps:
+      - name: echo
+        run: echo "Hello, world!"
