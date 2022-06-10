@@ -1,0 +1,12 @@
+name: 'Echo sample'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  run_echo:
+    steps:
+      - name: echo
+        run: echo 'Hello cloud gurus'
