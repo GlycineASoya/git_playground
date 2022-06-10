@@ -7,6 +7,7 @@ on:
       - master
 jobs:
   run_echo:
+    runs-on: self_host
     steps:
       - name: echo
         run: echo 'Hello cloud gurus'
