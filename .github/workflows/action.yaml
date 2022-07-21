@@ -11,3 +11,9 @@ jobs:
     steps:
       - name: echo
         run: echo 'Hello cloud gurus'
+
+  helm-publish:
+    needs: [run_echo]
+    runs-on: [self-hosted]
+    steps:
+      - run: echo ${github.event}
