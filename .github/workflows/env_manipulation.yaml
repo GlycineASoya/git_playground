@@ -23,6 +23,8 @@ jobs:
       - name: PREPARE INPUT
         run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
       - run: echo ${{ env.INPUT }}
+      - name: ECHO INPUT
+        run: echo "::set-output name=INPUT::${{ env.INPUT }}"
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
