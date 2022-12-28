@@ -40,4 +40,6 @@ jobs:
         EOF
     - name: Verify file content
       run: cat ${{ env.FILE }}
+    - name: MARKDOWN VALUE
+      run: echo "INPUT IS ${{ env.INPUT }}" >> $GITHUB_STEP_SUMMARY
 
