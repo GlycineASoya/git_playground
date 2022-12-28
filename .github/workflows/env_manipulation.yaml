@@ -5,7 +5,7 @@ on: [push]
 env:
   FOLDER: folder_name
   FILE: $FOLDER/file_name
-  INPUT: http://$FOLDER-"$FILE"
+  INPUT: http://$FOLDER-$FILE
 
 jobs:
   return_nested_values:
@@ -23,7 +23,7 @@ jobs:
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
-          "${{ env.INPUT }}"
+          ${{ env.INPUT }}
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
