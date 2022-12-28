@@ -8,27 +8,31 @@ env:
   INPUT: http://$FOLDER-$FILE
 
 jobs:
-  return_nested_values:
+  return-nested-values:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ env.FILE }}
-      - name: Create directory ${{ env.FOLDER }}
-        run: mkdir -p ${{ env.FOLDER }}
-      - name: Create file ${{ env.FILE }}
-        run: touch ${{ env.FILE }}
-      - name: Verify directory
-        run: ls -la .
-      - name: Verify file
-        run: ls -la ${{ env.FILE }}
-      - name: PREPARE INPUT
-        run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
-      - run: echo ${{ env.INPUT }}
-      - name: ECHO INPUT
-        run: echo "::set-output name=INPUT::${{ env.INPUT }}"
-      - name: Change file with ${{ env.INPUT }}
-        run: |
-          cat > ${{ env.FILE }} << EOF
-           ${{ env.INPUT }}
-          EOF
-      - name: Verify file content 
-        run: cat ${{ env.FILE }}
+    - run: echo ${{ env.FILE }}
+    - name: Create directory ${{ env.FOLDER }}
+      run: mkdir -p ${{ env.FOLDER }}
+    - name: Create file ${{ env.FILE }}
+      run: touch ${{ env.FILE }}
+    - name: Verify directory
+      run: ls -la .
+    - name: Verify file
+      run: ls -la ${{ env.FILE }}
+    - name: PREPARE INPUT
+      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
+    - run: echo ${{ env.INPUT }}
+    - name: ECHO INPUT
+      run: echo "::set-output name=INPUT::${{ env.INPUT }}"
+  upload-artifact:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Change file with ${{ env.INPUT }}
+      run: |
+        cat > ${{ env.FILE }} << EOF
+         ${{ env.INPUT }}
+        EOF
+    - name: Verify file content 
+      run: cat ${{ env.FILE }}
+
