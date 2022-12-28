@@ -1,4 +1,4 @@
-name: env-var-maipulation
+name: "ENV vars"
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 
@@ -8,4 +8,6 @@ env:
 
 jobs:
   return_nested_values:
-    echo "${FILE}"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${FILE}"
