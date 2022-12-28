@@ -21,7 +21,7 @@ jobs:
       - name: Verify file
         run: ls -la ./${{ env.FOLDER }}
       - name: PREPARE INPUT
-        run: echo "input=${INPUT}" >> $GITHUB_ENV
+        run: echo "input=http://$FOLDER-$FILE" >> $GITHUB_ENV
       - run: echo ${{ env.INPUT }}
       - name: Change file with ${{ env.INPUT }}
         run: |
