@@ -22,10 +22,11 @@ jobs:
         run: ls -la ./${{ env.FOLDER }}
       - name: PREPARE INPUT
         run: echo INPUT=${INPUT} >> $GITHUB_ENV
+      - run: echo ${{ env.INPUT }}
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
-          "$INPUT"
+           ${{ env.INPUT }}
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
