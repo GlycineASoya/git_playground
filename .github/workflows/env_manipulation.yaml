@@ -5,7 +5,7 @@ on: [push]
 env:
   FOLDER: folder_name
   FILE: $FOLDER/file_name
-  INPUT: http://$FOLDER-$FILE
+  INPUT: http://$FOLDER-${{ FILE }}
 
 jobs:
   return_nested_values:
