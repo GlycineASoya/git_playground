@@ -19,7 +19,7 @@ jobs:
       - name: Verify directory
         run: ls -la .
       - name: Verify file
-        run: ls -la ./${{ env.FOLDER }}
+        run: ls -la ${{ env.FILE }}
       - name: PREPARE INPUT
         run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
       - run: echo ${{ env.INPUT }}
