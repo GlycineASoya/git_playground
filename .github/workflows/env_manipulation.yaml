@@ -12,12 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ env.FILE }}
-      - run: |
-          mkdir -p ${{ env.FOLDER }}
-          touch ${{ env.FILE }}
-          ls -la .
-          ls -la ./${{ env.FOLDER }}
+      - name: Create directory ${{ env.FOLDER }}
+        run: mkdir -p ${{ env.FOLDER }}
+      - name: Create file ${{ env.FILE }}
+        run: touch ${{ env.FILE }}
+      - name: Verify directory
+        run: ls -la .
+      - name: Verify file
+        run: ls -la ./${{ env.FOLDER }}
+      - name: Change file with ${{ env.INPUT }}
+        run: |
           cat > ${{ env.FILE }} << EOF
           ${{ env.INPUT }}
           EOF
-          cat ${{ env.FILE }}
+      - name: Verify file content 
+        run: cat ${{ env.FILE }}
