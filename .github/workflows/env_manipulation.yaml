@@ -5,25 +5,25 @@ on: [push]
 env:
   FOLDER: folder_name
   FILE: $FOLDER/file_name
-  INPUT: http://$FOLDER-{% FILE %}
+  INPUT: http://$FOLDER-${% FILE %}
 
 jobs:
   return_nested_values:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $FILE
-      - name: Create directory $FOLDER
-        run: mkdir -p $FOLDER
-      - name: Create file $FILE
-        run: touch $FILE
+      - run: echo ${{ env.FILE }}
+      - name: Create directory ${{ env.FOLDER }}
+        run: mkdir -p ${{ env.FOLDER }}
+      - name: Create file ${{ env.FILE }}
+        run: touch ${{ env.FILE }}
       - name: Verify directory
         run: ls -la .
       - name: Verify file
-        run: ls -la ./$FOLDER
-      - name: Change file with $INPUT
+        run: ls -la ./${{ env.FOLDER }}
+      - name: Change file with ${{ env.INPUT }}
         run: |
-          cat > $FILE << EOF
-          $env.INPUT
+          cat > ${{ env.FILE }} << EOF
+          ${{ env.INPUT }}
           EOF
       - name: Verify file content 
-        run: cat $FILE
+        run: cat ${{ env.FILE }}
