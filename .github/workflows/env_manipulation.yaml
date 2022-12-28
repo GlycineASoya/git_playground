@@ -10,4 +10,9 @@ jobs:
   return_nested_values:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${FILE}"
+      - run: echo ${{ env.FILE }}
+      - run: |
+          mkdir -p ${{ env.FOLDER }}
+          touch ${{ env.FILE }}
+          ls -la .
+          ls -la ./${{ env.FOLDER }}
