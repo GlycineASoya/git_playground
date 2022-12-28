@@ -23,7 +23,7 @@ jobs:
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
-          ${INPUT}
+          `${INPUT}`
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
