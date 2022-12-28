@@ -4,7 +4,7 @@ on: [push]
 
 env:
   FOLDER: folder_name
-  FILE: ${{ FOLDER }}/file_name
+  FILE: ${{ env.FOLDER }}/file_name
 
 jobs:
   return_nested_values:
