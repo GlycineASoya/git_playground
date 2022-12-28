@@ -21,12 +21,12 @@ jobs:
       - name: Verify file
         run: ls -la ./${{ env.FOLDER }}
       - name: PREPARE INPUT
-        run: echo INPUT=${INPUT} >> $GITHUB_ENV
+        run: echo "input=${INPUT}" >> $GITHUB_ENV
       - run: echo ${{ env.INPUT }}
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
-           ${{ env.INPUT }}
+           ${{ env.input }}
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
