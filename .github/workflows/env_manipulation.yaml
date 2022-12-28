@@ -20,3 +20,4 @@ jobs:
           cat > ${{ env.FILE }} << EOF
           ${{ env.INPUT }}
           EOF
+          cat ${{ env.FILE }}
