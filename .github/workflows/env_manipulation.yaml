@@ -11,19 +11,19 @@ jobs:
   return_nested_values:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ env.FILE }}
-      - name: Create directory ${{ env.FOLDER }}
-        run: mkdir -p ${{ env.FOLDER }}
-      - name: Create file ${{ env.FILE }}
-        run: touch ${{ env.FILE }}
+      - run: echo $FILE
+      - name: Create directory $FOLDER
+        run: mkdir -p $FOLDER
+      - name: Create file $FILE
+        run: touch $FILE
       - name: Verify directory
         run: ls -la .
       - name: Verify file
-        run: ls -la ./${{ env.FOLDER }}
-      - name: Change file with ${{ env.INPUT }}
+        run: ls -la ./$FOLDER
+      - name: Change file with $INPUT
         run: |
-          cat > ${{ env.FILE }} << EOF
-          ${{ env.INPUT }}
+          cat > $FILE << EOF
+          $env.INPUT
           EOF
       - name: Verify file content 
-        run: cat ${{ env.FILE }}
+        run: cat $FILE
