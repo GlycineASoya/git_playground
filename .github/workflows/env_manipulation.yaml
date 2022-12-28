@@ -11,3 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${FILE}"
+      - run: |
+          touch ${FILE}
+          ll -la .
