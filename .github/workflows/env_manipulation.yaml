@@ -14,6 +14,8 @@ jobs:
     - name: PREPARE INPUT
       run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
     - run: echo ${{ env.INPUT }}
+    - name: MARKDOWN INPUT
+      run: echo "INPUT IS ${{ env.INPUT }}" >> $GITHUB_STEP_SUMMARY
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
@@ -33,7 +35,7 @@ jobs:
     - name: Change file with ${{ env.INPUT }}
       run: |
         cat > ${{ env.FILE }} << EOF
-         ${{ env.INPUT }}
+         ${{ env.GITHUB_ENV.INPUT }}
         EOF
     - name: Verify file content 
       run: cat ${{ env.FILE }}
