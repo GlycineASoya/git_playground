@@ -11,7 +11,7 @@ jobs:
   preparation:
     runs-on: ubuntu-latest
     outputs:
-      INPUT: ${{ steps.env.outputs.INPUT }}
+      INPUT: ${{ steps.output.outputs.INPUT }}
     steps:
     - id: env
       name: PREPARE INPUT
