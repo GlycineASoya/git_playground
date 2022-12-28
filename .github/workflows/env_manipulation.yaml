@@ -27,11 +27,8 @@ jobs:
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
-  upload-artifact:
-    runs-on: ubuntu-latest
-    steps:
-    - name: uplod-locally
-      uses: actions/upload-artifact@v2
-      with: 
-        name: assets-for-download
-        path: ${{ env.FOLDER }}
+      - name: upload-locally
+        uses: actions/upload-artifact@v2
+        with: 
+          name: assets-for-download
+          path: ${{ env.FOLDER }}
