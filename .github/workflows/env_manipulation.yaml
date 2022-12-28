@@ -10,7 +10,7 @@ jobs:
   return_nested_values:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${FILE}"
+      - run: echo "${env.FILE}"
       - run: |
-          touch ${FILE}
+          touch ${env.FILE}
           ll -la .
