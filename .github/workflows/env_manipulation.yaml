@@ -35,8 +35,8 @@ jobs:
     - name: Change file with ${{ env.INPUT }}
       run: |
         cat > ${{ env.FILE }} << EOF
-         ${{ GITHUB_ENV.INPUT }}
+         ${{ runs.steps.preparation.env.INPUT }}
         EOF
-    - name: Verify file content 
+    - name: Verify file content
       run: cat ${{ env.FILE }}
 
