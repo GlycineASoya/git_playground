@@ -36,7 +36,7 @@ jobs:
     - name: Change file with ${{ env.INPUT }}
       run: |
         cat > ${{ env.FILE }} << EOF
-         ${{ jobs.preparation.steps.prepare.env.INPUT }}
+         ${{ needs.preparation.steps.prepare.env.INPUT }}
         EOF
     - name: Verify file content
       run: cat ${{ env.FILE }}
