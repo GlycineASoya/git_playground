@@ -23,12 +23,7 @@ jobs:
       - name: Change file with ${{ env.INPUT }}
         run: |
           cat > ${{ env.FILE }} << EOF
-          ${{ env.INPUT }}
+          "${{ env.INPUT }}"
           EOF
       - name: Verify file content 
         run: cat ${{ env.FILE }}
-      - name: upload-locally
-        uses: actions/upload-artifact@v2
-        with: 
-          name: assets-for-download
-          path: ${{ env.FOLDER }}
