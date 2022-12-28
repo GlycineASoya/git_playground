@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: PREPARE INPUT
-      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_OUTPUT
+      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
     - run: echo ${{ env.INPUT }}
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
