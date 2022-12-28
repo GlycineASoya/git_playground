@@ -11,7 +11,8 @@ jobs:
   preparation:
     runs-on: ubuntu-latest
     steps:
-    - name: PREPARE INPUT
+    - id: prepare
+      name: PREPARE INPUT
       run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
     - run: echo ${{ env.INPUT }}
     - name: MARKDOWN INPUT
@@ -35,7 +36,7 @@ jobs:
     - name: Change file with ${{ env.INPUT }}
       run: |
         cat > ${{ env.FILE }} << EOF
-         ${{ GITHUB_ENV.INPUT }}
+         ${{ job.preparation.steps.prepare.env.INPUT }}
         EOF
     - name: Verify file content
       run: cat ${{ env.FILE }}
