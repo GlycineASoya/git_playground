@@ -12,5 +12,5 @@ jobs:
     steps:
       - run: echo ${{ env.FILE }}
       - run: |
-          touch "${env.FILE}"
+          touch ${{ env.FILE }}
           ll -la .
