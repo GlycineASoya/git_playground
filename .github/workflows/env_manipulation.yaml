@@ -12,5 +12,6 @@ jobs:
     steps:
       - run: echo ${{ env.FILE }}
       - run: |
+          mkdir -p ${{ env.FOLDER }}
           touch ${{ env.FILE }}
           ll -la .
