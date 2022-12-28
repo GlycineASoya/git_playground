@@ -20,7 +20,7 @@ jobs:
     - name: MARKDOWN INPUT
       run: |
         echo "env INPUT IS ${{ env.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
-        echo "env INPUT IS ${{ output.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
+        echo "env INPUT IS ${{ steps.output.outputs.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
