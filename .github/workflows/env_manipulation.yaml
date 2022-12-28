@@ -13,7 +13,7 @@ jobs:
     steps:
     - id: prepare
       name: PREPARE INPUT
-      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_OUTPUT
+      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
     - run: echo ${{ env.INPUT }}
     - name: MARKDOWN INPUT
       run: echo "INPUT IS ${{ env.INPUT }}" >> $GITHUB_STEP_SUMMARY
@@ -41,5 +41,5 @@ jobs:
     - name: Verify file content
       run: cat ${{ env.FILE }}
     - name: MARKDOWN VALUE
-      run: echo "INPUT IS ${{ needs.prepare.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: echo "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
 
