@@ -36,10 +36,10 @@ jobs:
     - name: Change file with ${{ env.INPUT }}
       run: |
         cat > ${{ env.FILE }} << EOF
-         ${{ needs.prepare.outputs.INPUT }}
+         ${{ needs.preparation.env.INPUT }}
         EOF
     - name: Verify file content
       run: cat ${{ env.FILE }}
     - name: MARKDOWN VALUE
-      run: echo "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: echo "INPUT IS ${{ needs.preparation.env.INPUT }}" >> $GITHUB_STEP_SUMMARY
 
