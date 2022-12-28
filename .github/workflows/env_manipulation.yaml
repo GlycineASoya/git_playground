@@ -11,12 +11,16 @@ jobs:
   preparation:
     runs-on: ubuntu-latest
     steps:
-    - id: prepare
+    - id: env
       name: PREPARE INPUT
       run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_ENV
-    - run: echo ${{ env.INPUT }}
+    - id: output
+      name: PREPARE INPUT
+      run: echo "INPUT=${{ env.INPUT }}" >> $GITHUB_OUTPUT
     - name: MARKDOWN INPUT
-      run: echo "INPUT IS ${{ env.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo "env INPUT IS ${{ env.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
+        echo "env INPUT IS ${{ output.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
