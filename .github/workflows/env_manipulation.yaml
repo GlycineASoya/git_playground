@@ -5,6 +5,7 @@ on: [push]
 env:
   FOLDER: folder_name
   FILE: $FOLDER/file_name
+  INPUT: "$FOLDER $FILE"
 
 jobs:
   return_nested_values:
@@ -16,3 +17,6 @@ jobs:
           touch ${{ env.FILE }}
           ls -la .
           ls -la ./${{ env.FOLDER }}
+          cat > ${{ env.FILE }} << EOF
+          ${{ env.INPUT }}
+          EOF
