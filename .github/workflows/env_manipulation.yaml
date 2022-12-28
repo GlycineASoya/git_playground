@@ -10,6 +10,8 @@ env:
 jobs:
   preparation:
     runs-on: ubuntu-latest
+    outputs:
+      INPUT=${{ steps.env.outputs.INPUT }}
     steps:
     - id: env
       name: PREPARE INPUT
@@ -45,5 +47,5 @@ jobs:
     - name: Verify file content
       run: cat ${{ env.FILE }}
     - name: MARKDOWN VALUE
-      run: echo "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
 
