@@ -12,9 +12,9 @@ jobs:
   local-envs:
     runs-on: ubuntu-latest
     env:
-      DATAFLOW_NAME: ${{ env.DATAFLOW_NAME }}
+      DATAFLOW_NAME: $DATAFLOW_NAME
     steps:
-    - run: echo $DATAFLOW_NAME
+    - run: echo ${{ env.DATAFLOW_NAME }}
   preparation:
     runs-on: ubuntu-latest
     outputs:
