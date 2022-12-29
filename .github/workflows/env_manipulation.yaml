@@ -18,7 +18,7 @@ jobs:
       run: |
         echo -e "env local env is ${DATAFLOW_NAME}\n" >> $GITHUB_STEP_SUMMARY
         echo -e "current branch is ${GITHUB_REF##*/}\n" >> $GITHUB_STEP_SUMMARY
-        echo -e "current branch is ${github.ref_name}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "current branch is ${{ github.ref_name }}\n" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
     needs:
