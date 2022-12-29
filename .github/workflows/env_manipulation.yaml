@@ -18,7 +18,7 @@ jobs:
       run: echo "INPUT  =   ${{ env.INPUT }}"     >> $GITHUB_ENV
     - id: output
       name: PREPARE INPUT
-      run: echo "INPUT=${{ env.INPUT }}"     >> $GITHUB_OUTPUT
+      run: echo -e "INPUT   =   ${{ env.INPUT }}"     >> $GITHUB_OUTPUT
     - name: MARKDOWN INPUT
       run: |
         echo -e "env INPUT IS ${{ env.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
