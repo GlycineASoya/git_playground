@@ -31,8 +31,8 @@ jobs:
     - preparation
     steps:
     - run: echo ${{ env.FILE }}
-    - name: Create directory ${{ env.FOLDER }}
-      run: mkdir -p ${{ env.FOLDER }}
+    - name: Create directory $FOLDER
+      run: mkdir -p $FOLDER
     - name: Create file ${{ env.FILE }}
       run: touch ${{ env.FILE }}
     - name: Verify directory
