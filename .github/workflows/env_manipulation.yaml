@@ -12,11 +12,11 @@ jobs:
   local-envs:
     runs-on: ubuntu-latest
     env:
-      DATAFLOW_NAME: echo -e "$DATAFLOW_NAME"
+      DATAFLOW: echo -e "$DATAFLOW_NAME"
     steps:
     - name: MARKDOWN INPUT
       run: |
-        echo -e "env local env is $DATAFLOW_NAME\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "env local env is ${{ DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
     needs:
