@@ -12,7 +12,7 @@ jobs:
   local-envs:
     runs-on: ubuntu-latest
     env:
-      DATAFLOW: echo -e "$DATAFLOW_NAME"
+      DATAFLOW: echo -e "${DATAFLOW_NAME}"
     steps:
     - name: MARKDOWN INPUT
       run: |
