@@ -14,7 +14,7 @@ jobs:
     env:
       DATAFLOW_NAME: $DATAFLOW_NAME
     steps:
-    - run: echo ${{ DATAFLOW_NAME }}
+    - run: echo ${DATAFLOW_NAME}
   preparation:
     runs-on: ubuntu-latest
     needs:
