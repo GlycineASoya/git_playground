@@ -6,7 +6,7 @@ env:
   FOLDER: folder_name
   FILE: $FOLDER/file_name
   INPUT: "http://$FOLDER-$FILE"
-  DATAFLOW_NAME: dataflow-name
+  DATAFLOW_NAME: "BLABLABLA"
 
 jobs:
   local-envs:
@@ -14,9 +14,11 @@ jobs:
     env:
       DATAFLOW_NAME: $DATAFLOW_NAME
     steps:
-    - run: echo ${{ env.DATAFLOW_NAME }}
+    - run: echo ${{ DATAFLOW_NAME }}
   preparation:
     runs-on: ubuntu-latest
+    needs:
+    - local-envs
     outputs:
       INPUT:          ${{ steps.output.outputs.INPUT }}
     steps:
