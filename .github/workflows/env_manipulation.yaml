@@ -12,7 +12,7 @@ jobs:
   local-envs:
     runs-on: ubuntu-latest
     env:
-      DATAFLOW: ${{ env.DATAFLOW_NAME }}
+      DATAFLOW: ${{ github.env.DATAFLOW_NAME }}
     steps:
     - name: MARKDOWN INPUT
       run: |
