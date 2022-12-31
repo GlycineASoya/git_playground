@@ -1,15 +1,15 @@
-name: 'Echoing'
+# name: 'Echoing'
 
-on:
-  push:
-    branches: [ "master" ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ "master" ]
+#   workflow_dispatch:
   
-jobs:
-  echo_run:
-    runs-on:
-      - self-hosted
+# jobs:
+#   echo_run:
+#     runs-on:
+#       - self-hosted
 
-    steps:
-      - name: echo
-        run: echo "Hello, world!"
+#     steps:
+#       - name: echo
+#         run: echo "Hello, world!"

@@ -1,19 +1,19 @@
-name: 'Echo sample'
+# name: 'Echo sample'
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-jobs:
-  run_echo:
-    runs-on: [self-hosted]
-    steps:
-      - name: echo
-        run: echo 'Hello cloud gurus'
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - master
+# jobs:
+#   run_echo:
+#     runs-on: [self-hosted]
+#     steps:
+#       - name: echo
+#         run: echo 'Hello cloud gurus'
 
-  helm-publish:
-    needs: [run_echo]
-    runs-on: [self-hosted]
-    steps:
-      - run: echo ${github.event}
+#   helm-publish:
+#     needs: [run_echo]
+#     runs-on: [self-hosted]
+#     steps:
+#       - run: echo ${github.event}
