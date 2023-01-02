@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FOLDER: '$FOLDER'
-      FILE: ${{ env.FILE }}
+      FILE: '$FILE'
     needs: 
     - preparation
     steps:
