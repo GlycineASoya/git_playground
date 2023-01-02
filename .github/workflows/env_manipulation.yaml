@@ -7,7 +7,7 @@ env:
   FILE: $FOLDER/file_name
   INPUT: "http://$FOLDER-$FILE"
   DATAFLOW_NAME: "BLABLABLA"
-  TO_RUN: false
+  TO_RUN: 'false'
 
 jobs:
   local-envs:
