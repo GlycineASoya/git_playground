@@ -39,8 +39,8 @@ jobs:
   return-nested-values:
     runs-on: ubuntu-latest
     env:
-      FOLDER: $FOLDER
-      FILE: $FILE
+      FOLDER: ${{ FOLDER }}
+      FILE: ${{ FILE }}
     needs: 
     - preparation
     steps:
