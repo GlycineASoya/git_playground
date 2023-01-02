@@ -7,6 +7,7 @@ env:
   FILE: $FOLDER/file_name
   INPUT: "http://$FOLDER-$FILE"
   DATAFLOW_NAME: "BLABLABLA"
+  TO_RUN: false
 
 jobs:
   local-envs:
@@ -18,8 +19,25 @@ jobs:
       run: |
         echo -e "local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
         echo -e "global env is ${{ env.DATAFLOW_NAME }}\n" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with ${{ env.DATAFLOW }}
+      run: |
+        touch ${{ env.DATAFLOW }}
+        echo -e "Create file with ${{ env.DATAFLOW }} $(ll -la)" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with ${{ env.DATAFLOW_NAME }}
+      run: |
+        touch ${{ env.DATAFLOW_NAME }}
+        echo -e "Create file with ${{ env.DATAFLOW_NAME }} $(ll -la)" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with $DATAFLOW
+      run: |
+        touch $DATAFLOW
+        echo -e "Create file with $DATAFLOW $(ll -la)" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with $DATAFLOW_NAME
+      run: |
+        touch $DATAFLOW_NAME
+        echo -e "Create file with $DATAFLOW_NAME $(ll -la)" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
+    if: ${{ TO_RUN == true }}
     needs:
     - local-envs
     outputs:
@@ -39,6 +57,7 @@ jobs:
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
     runs-on: ubuntu-latest
+    if: ${{ TO_RUN == true }}
     env:
       FOLDER: $env.FOLDER
       FILE: $env.FILE
