@@ -16,7 +16,20 @@ jobs:
     steps:
     - name: MARKDOWN INPUT
       run: |
-        echo -e "env local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "global env is ${{ env.DATAFLOW_NAME }}\n" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with ${{ env.DATAFLOW }}
+      run: |
+        touch "${{ env.DATAFLOW }}"_1
+        echo -e "Create file with ${{ env.DATAFLOW }}\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with ${{ env.DATAFLOW_NAME }}
+      run: |
+        touch "${{ env.DATAFLOW_NAME }}"_2
+        echo -e "Create file with ${{ env.DATAFLOW_NAME }}\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
+    - name: Create file with $DATAFLOW_NAME
+      run: |
+        touch "$DATAFLOW_NAME"_4
+        echo -e "Create file with $DATAFLOW_NAME\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
     needs:
@@ -38,11 +51,14 @@ jobs:
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
     runs-on: ubuntu-latest
+    env:
+      FOLDER: $env.FOLDER
+      FILE: $env.FILE
     needs: 
     - preparation
     steps:
     - run: echo ${{ env.FILE }}
-    - name: Create directory $FOLDER
+    - name: Create directory ${{ env.FOLDER }}
       run: mkdir -p $FOLDER
     - name: Create file ${{ env.FILE }}
       run: touch ${{ env.FILE }}
@@ -58,5 +74,7 @@ jobs:
     - name: Verify file content
       run: cat ${{ env.FILE }}
     - name: MARKDOWN VALUE
-      run: echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+        echo -e "INPUT IS ${{ env.FILE_LOCAL }}" >> $GITHUB_STEP_SUMMARY
 
