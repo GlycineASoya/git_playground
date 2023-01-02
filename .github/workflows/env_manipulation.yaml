@@ -16,7 +16,8 @@ jobs:
     steps:
     - name: MARKDOWN INPUT
       run: |
-        echo -e "env local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "global env is ${{ env.DATAFLOW_NAME }}\n" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
     needs:
