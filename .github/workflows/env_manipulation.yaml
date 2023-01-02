@@ -37,7 +37,7 @@ jobs:
         echo -e "Create file with $DATAFLOW_NAME $(ll -la)" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
-    if: ${{ TO_RUN == true }}
+    if: ${{ env.TO_RUN == true }}
     needs:
     - local-envs
     outputs:
@@ -57,7 +57,7 @@ jobs:
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
     runs-on: ubuntu-latest
-    if: ${{ TO_RUN == true }}
+    if: ${{ env.TO_RUN == true }}
     env:
       FOLDER: $env.FOLDER
       FILE: $env.FILE
