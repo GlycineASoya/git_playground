@@ -20,19 +20,19 @@ jobs:
         echo -e "global env is ${{ env.DATAFLOW_NAME }}\n" >> $GITHUB_STEP_SUMMARY
     - name: Create file with ${{ env.DATAFLOW }}
       run: |
-        touch ${{ env.DATAFLOW }}
+        touch "${{ env.DATAFLOW }}"_1
         echo -e "Create file with ${{ env.DATAFLOW }}\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
     - name: Create file with ${{ env.DATAFLOW_NAME }}
       run: |
-        touch ${{ env.DATAFLOW_NAME }}
+        touch "${{ env.DATAFLOW_NAME }}"_2
         echo -e "Create file with ${{ env.DATAFLOW_NAME }}\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
     - name: Create file with $DATAFLOW
       run: |
-        touch $DATAFLOW
+        touch "$DATAFLOW"_3
         echo -e "Create file with $DATAFLOW\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
     - name: Create file with $DATAFLOW_NAME
       run: |
-        touch $DATAFLOW_NAME
+        touch "$DATAFLOW_NAME"_4
         echo -e "Create file with $DATAFLOW_NAME\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
   preparation:
     runs-on: ubuntu-latest
