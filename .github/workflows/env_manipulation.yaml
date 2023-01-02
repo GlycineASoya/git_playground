@@ -12,7 +12,7 @@ jobs:
   local-envs:
     runs-on: ubuntu-latest
     env:
-      DATAFLOW: ${DATAFLOW_NAME}
+      DATAFLOW: $DATAFLOW_NAME
     steps:
     - name: MARKDOWN INPUT
       run: |
@@ -26,10 +26,6 @@ jobs:
       run: |
         touch "${{ env.DATAFLOW_NAME }}"_2
         echo -e "Create file with ${{ env.DATAFLOW_NAME }}\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
-    - name: Create file with $DATAFLOW
-      run: |
-        touch "$DATAFLOW"_3
-        echo -e "Create file with $DATAFLOW\n $(ls -la)" >> $GITHUB_STEP_SUMMARY
     - name: Create file with $DATAFLOW_NAME
       run: |
         touch "$DATAFLOW_NAME"_4
