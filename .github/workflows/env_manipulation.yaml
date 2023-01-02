@@ -38,6 +38,8 @@ jobs:
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
     runs-on: ubuntu-latest
+    env:
+      FILE: $FILE
     needs: 
     - preparation
     steps:
@@ -58,5 +60,7 @@ jobs:
     - name: Verify file content
       run: cat ${{ env.FILE }}
     - name: MARKDOWN VALUE
-      run: echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
+        echo -e "INPUT IS ${{ env.FILE }}" >> $GITHUB_STEP_SUMMARY
 
