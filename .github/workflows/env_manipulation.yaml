@@ -39,7 +39,8 @@ jobs:
   return-nested-values:
     runs-on: ubuntu-latest
     env:
-      FILE_LOCAL: $FILE
+      FOLDER: $FOLDER
+      FILE: $FILE
     needs: 
     - preparation
     steps:
