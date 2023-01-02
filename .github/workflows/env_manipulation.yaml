@@ -39,7 +39,7 @@ jobs:
   return-nested-values:
     runs-on: ubuntu-latest
     env:
-      FILE: $FILE
+      FILE_LOCAL: $FILE
     needs: 
     - preparation
     steps:
@@ -62,5 +62,5 @@ jobs:
     - name: MARKDOWN VALUE
       run: |
         echo -e "INPUT IS ${{ needs.preparation.outputs.INPUT }}" >> $GITHUB_STEP_SUMMARY
-        echo -e "INPUT IS ${{ env.FILE }}" >> $GITHUB_STEP_SUMMARY
+        echo -e "INPUT IS ${{ env.FILE_LOCAL }}" >> $GITHUB_STEP_SUMMARY
 
