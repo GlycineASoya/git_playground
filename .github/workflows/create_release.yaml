@@ -1,0 +1,29 @@
+name: Create Release
+ 
+on:
+  workflow_dispatched:
+
+inputs:
+  service-version:
+    required: true
+    description: the git-tag that should be created
+  github-token:
+    required: true
+    description: github-token
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build changes description
+        shell: bash
+        run: |
+          awk -v version=${{ inputs.service-version }} '/^## \[.*\]/ {if (p)  { exit }; if ($2 == "["version"]") { p = 1; next } } p && NF' CHANGELOG.md > release_desc.txt
+      - name: Create GitHub Release and Tag
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ inputs.github-token }}
+        with:
+          tag_name: ${{inputs.service-version}}
+          release_name: ${{inputs.service-version}}
+          body_path: release_desc.txt
