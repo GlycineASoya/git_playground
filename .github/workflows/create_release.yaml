@@ -1,15 +1,7 @@
 name: Create Release
  
 on:
-  workflow_dispatched:
-
-inputs:
-  service-version:
-    required: true
-    description: the git-tag that should be created
-  github-token:
-    required: true
-    description: github-token
+  workflow_dispatch:
 
 jobs:
   create_release:
