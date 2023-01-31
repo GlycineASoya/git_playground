@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Tag
         id: tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         uses: mathieudutour/github-tag-action@v6.0
       - name: Create GitHub Release
         uses: actions/create-release@v1
