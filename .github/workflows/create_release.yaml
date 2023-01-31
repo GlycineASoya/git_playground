@@ -2,11 +2,6 @@ name: Create Release
  
 on:
   workflow_dispatch:
-    inputs:
-      tag:
-        type: string
-        description: Desired tag
-        required: true
 
 jobs:
   create_release:
@@ -14,17 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Tag
+        id: tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: ${{inputs.tag}}
         uses: actions/github-tag-action@v6.1
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: | 
-            TAG: ${{inputs.tag}}
-            REF: ${{inputs.ref}}
+          tag_name: ${{ steps.tag.new_tag }}
+          release_name: ${{ steps.tag.new_version 
