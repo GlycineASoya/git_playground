@@ -2,21 +2,31 @@ name: Create Release
  
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: true
 
 jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Tag
+      - name: Create tag
         id: tag
+        uses: actions/github-script@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        uses: mathieudutour/github-tag-action@v6.0
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ inputs.tag }}',
+              sha: context.sha
+            })
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.new_tag }}
-          release_name: ${{ steps.tag.new_version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
