@@ -8,10 +8,9 @@ on:
         required: true
 
 jobs:
-  create_release:
+  create_tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Create tag
         id: tag
         uses: actions/github-script@v5
@@ -23,6 +22,12 @@ jobs:
               ref: 'refs/tags/${{ inputs.tag }}',
               sha: context.sha
             })
+  create_release:
+    runs-on: ubuntu-latest
+    needs: 
+      - create_tag
+    steps:
+      - uses: actions/checkout@v2
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
