@@ -2,20 +2,23 @@ name: Create Release
  
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        description: Desired tag
+        required: true
 
 jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Build changes description
-        shell: bash
-        run: |
-          awk -v version=${{ inputs.service-version }} '/^## \[.*\]/ {if (p)  { exit }; if ($2 == "["version"]") { p = 1; next } } p && NF' CHANGELOG.md > release_desc.txt
       - name: Create GitHub Release and Tag
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ inputs.github-token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{inputs.service-version}}
-          release_name: ${{inputs.service-version}}
-          body_path: release_desc.txt
+          tag_name: ${{inputs.tag}}
+          release_name: ${{inputs.ref}}
+          body_path: | 
+           TAG: ${{inputs.tag}}
+           REF: ${{inputs.ref}}
