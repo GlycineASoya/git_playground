@@ -12,6 +12,7 @@ permissions: write-all
 jobs:
   create_tag:
     runs-on: ubuntu-latest
+    permissions: write-all 
     steps:
       - name: Create tag
         id: tag
