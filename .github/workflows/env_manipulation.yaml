@@ -34,6 +34,7 @@ jobs:
       run: |
         echo -e "env INPUT IS ${{ env.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
         echo -e "output INPUT IS ${{ steps.output.outputs.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "$(git describe --tags `git rev-list --tags --max-count=1`)"
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
