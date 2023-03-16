@@ -14,6 +14,8 @@ jobs:
     env:
       DATAFLOW: $DATAFLOW_NAME
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
     - name: Get last tag
       run: |
         LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
