@@ -17,6 +17,7 @@ jobs:
     - name: MARKDOWN INPUT
       run: |
         echo -e "env local env is ${{ env.DATAFLOW }}\n" >> $GITHUB_STEP_SUMMARY
+        echo -e "Last tag is: $(git describe --tags `git rev-list --tags --max-count=1`)"
   preparation:
     runs-on: ubuntu-latest
     needs:
@@ -34,7 +35,6 @@ jobs:
       run: |
         echo -e "env INPUT IS ${{ env.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
         echo -e "output INPUT IS ${{ steps.output.outputs.INPUT }}\n" >> $GITHUB_STEP_SUMMARY
-        echo -e "$(git describe --tags `git rev-list --tags --max-count=1`)"
     #- name: ECHO INPUT
     #  run: echo "::set-output name=INPUT::${{ env.INPUT }}"
   return-nested-values:
