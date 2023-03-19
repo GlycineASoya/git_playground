@@ -2,8 +2,6 @@ name: Add Branch Name as First Commit Message
 
 on:
   push:
-    paths:
-      - ./commit_message.md
 
 jobs:
   add-commit-message:
