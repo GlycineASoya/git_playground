@@ -14,8 +14,8 @@ jobs:
       - name: Get branch name
         #run: echo "::set-output name=branch-name::$(echo ${GITHUB_REF#refs/heads/} | sed -E 's/[^a-zA-Z0-9]+/-/g')"
         run: |
-          echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([A-Z]{3,4}.*?)$#\1#p')" >> $GITHUB_OUTPUT
-          echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([A-Z]{3,4}.*?)$#\1#p')" >> $GITHUB_STEP_SUMMARY
+          echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([a-zA-Z].*?[0-9]{1-5})$#\1#p')" >> $GITHUB_OUTPUT
+          echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([a-zA-Z].*?[0-9]{1-5})$#\1#p')" >> $GITHUB_STEP_SUMMARY
           echo "${GITHUB_REF#refs/heads/}" >> $GITHUB_STEP_SUMMARY
 
       - name: Add commit message
