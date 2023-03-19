@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get branch name
+        id: get-branch-name
         #run: echo "::set-output name=branch-name::$(echo ${GITHUB_REF#refs/heads/} | sed -E 's/[^a-zA-Z0-9]+/-/g')"
         run: |
           echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([a-zA-Z]{3}-[0-9]{0,5})$#\1#p')" >> $GITHUB_OUTPUT
@@ -20,7 +21,7 @@ jobs:
 
       - name: Add commit message
         run: |
-          phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo '')
+          phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix')
           git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
 
       - name: Push changes
