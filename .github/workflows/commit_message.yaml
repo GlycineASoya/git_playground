@@ -23,6 +23,7 @@ jobs:
         run: |
           phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix')
           git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
+          echo "$phrase" >> $GITHUB_STEP_SUMMARY
 
       - name: Push changes
         uses: ad-m/github-push-action@master
