@@ -22,7 +22,7 @@ jobs:
 
       - name: Add commit message
         run: |
-          phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix*')
+          phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iE 'fix*')
           echo "$phrase" >> $GITHUB_STEP_SUMMARY
           git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
 
