@@ -1,0 +1,33 @@
+name: Amend Commit Message
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  amend-commit-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Find commit with desired phrase
+        id: find-commit
+        run: |
+          commit=$(git rev-list -n 1 --grep='fix typo' HEAD)
+          echo "::set-output name=commit::$commit"
+
+      - name: Amend commit message
+        id: amend-commit
+        run: |
+          git commit --amend -m "$(git log -1 --pretty=%B ${{ steps.find-commit.outputs.commit }}) and more changes"
+          echo "::set-output name=commit-hash::$(git rev-parse HEAD)"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          force: 'true'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
