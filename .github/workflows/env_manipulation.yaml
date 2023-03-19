@@ -2,8 +2,6 @@ name: "ENV vars"
 run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
-    branches:
-    - master
     paths:
     - .github/workflows/env_manipulation.yaml
 
