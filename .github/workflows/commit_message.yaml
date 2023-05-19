@@ -4,6 +4,13 @@ on:
   push:
 
 jobs:
+  install-husky:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install husky
+      run: |
+        npm install husky --save-dev >> $GITHUB_STEP_SUMMARY
+      
   add-commit-message:
     runs-on: ubuntu-latest
 
@@ -21,9 +28,9 @@ jobs:
 
       - name: Add commit message
         run: |
-          phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix')
-          echo "$phrase" >> $GITHUB_STEP_SUMMARY
-          git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
+          //phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix')
+          //echo "$phrase" >> $GITHUB_STEP_SUMMARY
+          //git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
