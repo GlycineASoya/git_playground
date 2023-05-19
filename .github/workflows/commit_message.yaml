@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  install-husky:
+  husky:
     runs-on: ubuntu-latest
     steps:
     - name: Install husky
@@ -25,16 +25,3 @@ jobs:
           echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([a-zA-Z]{3}-[0-9]{0,5})$#\1#p')" >> $GITHUB_OUTPUT
           echo "branch-name=$(echo ${GITHUB_REF#refs/heads/} | sed -nE 's#.*?([a-zA-Z]{3}-[0-9]{0,5})$#\1#p')" >> $GITHUB_STEP_SUMMARY
           echo "${GITHUB_REF#refs/heads/}" >> $GITHUB_STEP_SUMMARY
-
-      - name: Add commit message
-        run: |
-          //phrase=$(echo "${{ steps.get-branch-name.outputs.branch-name }}" | grep -iEo 'fix')
-          //echo "$phrase" >> $GITHUB_STEP_SUMMARY
-          //git commit --amend -m "$phrase: $(git log -1 --pretty=%B)"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: ${{ github.ref }}
-          force: 'true'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
