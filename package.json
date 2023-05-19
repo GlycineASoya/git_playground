@@ -1,4 +1,5 @@
 {
+  "husky": {},
   "scripts": {
     "prepare": "husky install .husky"
   }
