@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "prepare": "husky install .config/husky"
+    "prepare": "husky install .husky"
   }
 }
