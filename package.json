@@ -1,6 +1,11 @@
 {
+  "name": "git playground",
+  "version": "1.0.0",
   "scripts": {
-    "prepare": "husky install .husky"
+    "prepare": "husky install"
+  },
+  "dependancies": {
+    "husky": "^8.0.0"
   },
   "husky": {
     "hooks": {
