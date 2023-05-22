@@ -15,7 +15,8 @@ jobs:
         npx husky install >> $GITHUB_STEP_SUMMARY
     - name: Add hooks
       run: |
-        echo "$PWD"
+        echo "PWD: $PWD"
+        echo "ll pwd: $(ll $PWD)"
         npx husky add ../../.husky/pre-commit "echo 'pre commit'"
         npx husky add ../../.husky/commit-msg "echo 'commit message'"
       
