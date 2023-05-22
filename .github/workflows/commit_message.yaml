@@ -19,11 +19,8 @@ jobs:
       run: |
         echo "PWD: $PWD"
         echo "ll pwd: $(ls -la $PWD)"
-        cd ..
-        echo "PWD: $PWD"
-        echo "ll pwd: $(ls -la $PWD)"
-        npx husky add ../../.husky/pre-commit "echo 'pre commit'"
-        npx husky add ../../.husky/commit-msg "echo 'commit message'"
+        npx husky add .husky/pre-commit "echo 'pre commit'"
+        npx husky add .husky/commit-msg "echo 'commit message'"
       
   add-commit-message:
     runs-on: ubuntu-latest
