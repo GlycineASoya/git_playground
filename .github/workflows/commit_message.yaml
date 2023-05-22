@@ -10,8 +10,13 @@ jobs:
     - name: Install husky
       run: |
         npm install husky --save-dev >> $GITHUB_STEP_SUMMARY
-    - name: Download code
-      uses: actions/checkout@v2
+    - name: Install hooks
+      run: |
+        npx husky install >> $GITHUB_STEP_SUMMARY
+    - name: Add hooks
+      run: |
+        npx husky add .husky/pre-commit "echo 'pre commit'"
+        npx husky add .husky/commit-msg "echo 'commit message'"
       
   add-commit-message:
     runs-on: ubuntu-latest
