@@ -8,16 +8,16 @@ on:
         description: Cluster on which Locust runs
         required: true
         type: choice
-        default: germany
+        default: cluster1
         options:
-          - germany
-          - belgium
+          - cluster1
+          - cluster2
 
 env:
   CLUSTERS: |
     {
-      "germany": "projects/db-dev-regt-olbcs-cluster/locations/europe-west3/clusters/olb-germany",
-      "belgium": "projects/db-dev-regt-olbcs-cluster/locations/europe-west1/clusters/olb-belgium"
+      "cluster1": "cluster-1",
+      "cluster2": "cluster-2"
     }
   RELEASE_NAME: lpt
   NAMESPACE: load-tests
@@ -26,8 +26,7 @@ jobs:
   cleanup-load-tests: 
     runs-on: ubuntu-latest
     env:
-      CLUSTER: fromJSON(env.CLUSTERS)[inputs.country]
-      #${{ github.event_name == 'push' && 'projects/db-dev-regt-olbcs-cluster/locations/europe-west3/clusters/olb-germany' || fromJSON(env.CLUSTERS)[inputs.country] }}
+      CLUSTER: ${{fromJSON(env.CLUSTERS)[inputs.country]}}
     defaults:
       run:
         shell: bash
