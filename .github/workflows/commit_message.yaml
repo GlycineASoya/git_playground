@@ -24,7 +24,7 @@ jobs:
   cleanup-load-tests:
     runs-on: ubuntu-latest
     env:
-      CLUSTER: "teest"
+      CLUSTER: "${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}"
     defaults:
       run:
         shell: bash
