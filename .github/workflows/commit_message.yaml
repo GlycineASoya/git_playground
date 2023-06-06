@@ -21,10 +21,17 @@ env:
     }
 
 jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs:
+      cluster: ${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}
+      
   cleanup-load-tests:
+    needs: prep
     runs-on: ubuntu-latest
     env:
-      CLUSTER: "${{ github.event_name == 'push' && 'PUSH' || fromJSON(${env.CLUSTERS})[inputs.country] }}"
+      CLUSTER: ${{ needs.prep.outputs.cluster }}
+      # ${{ github.event_name == 'push' && 'PUSH' || 
     defaults:
       run:
         shell: bash
@@ -33,7 +40,7 @@ jobs:
     steps:
       - run: |
           echo "$CLUSTER" >> $GITHUB_STEP_SUMMARY
-          echo "${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           
   husky:
     needs: cleanup-load-tests
