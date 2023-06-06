@@ -21,7 +21,7 @@ env:
     }
 
 jobs:
-  cleanup-load-tests: 
+  cleanup-load-tests:
     runs-on: ubuntu-latest
     env:
       CLUSTER: "teest"
@@ -33,7 +33,7 @@ jobs:
     steps:
       - run: |
           echo "$CLUSTER" >> $GITHUB_STEP_SUMMARY
-          echo "${{ fromJSON(env.CLUSTERS) }}" >> $GITHUB_STEP_SUMMARY
+          echo "${{ fromJSON(env.CLUSTERS).cluster1 }}" >> $GITHUB_STEP_SUMMARY
           
   husky:
     needs: cleanup-load-tests
