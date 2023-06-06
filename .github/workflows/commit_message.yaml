@@ -26,7 +26,8 @@ jobs:
   cleanup-load-tests:
     runs-on: ubuntu-latest
     env:
-      CLUSTER: ${{ github.event_name == 'push' && 'projects/db-dev-regt-olbcs-cluster/locations/europe-west3/clusters/olb-germany' || fromJSON(env.CLUSTERS)[inputs.country] }}
+      CLUSTER: "CLuster"
+      #${{ github.event_name == 'push' && 'projects/db-dev-regt-olbcs-cluster/locations/europe-west3/clusters/olb-germany' || fromJSON(env.CLUSTERS)[inputs.country] }}
     defaults:
       run:
         shell: bash
