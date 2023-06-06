@@ -19,8 +19,6 @@ env:
       "cluster1": "cluster-1",
       "cluster2": "cluster-2"
     }
-  RELEASE_NAME: lpt
-  NAMESPACE: load-tests
 
 jobs:
   cleanup-load-tests: 
@@ -35,7 +33,7 @@ jobs:
     steps:
       - run: |
           echo "$CLUSTER" >> $GITHUB_STEP_SUMMARY
-          echo "${{fromJSON(env.CLUSTERS)" >> $GITHUB_STEP_SUMMARY
+          echo "${{env.CLUSTERS" >> $GITHUB_STEP_SUMMARY
           
   husky:
     needs: cleanup-load-tests
