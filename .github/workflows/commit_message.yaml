@@ -33,7 +33,7 @@ jobs:
     steps:
       - run: |
           echo "$CLUSTER" >> $GITHUB_STEP_SUMMARY
-          echo "${{env.CLUSTERS}}" >> $GITHUB_STEP_SUMMARY
+          echo "fromJSON${{env.CLUSTERS}}" >> $GITHUB_STEP_SUMMARY
           
   husky:
     needs: cleanup-load-tests
