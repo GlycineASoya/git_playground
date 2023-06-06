@@ -24,7 +24,11 @@ jobs:
   prep:
     runs-on: ubuntu-latest
     outputs:
-      cluster: ${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}
+      cluster: ${{ steps.prepare.outputs.cluster }}
+    steps:
+      - id: prepare
+        run: |
+          echo "cluster=${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}" >> $GITHUB_OUTPUT
       
   cleanup-load-tests:
     needs: prep
