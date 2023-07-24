@@ -21,6 +21,12 @@ env:
     }
 
 jobs:
+  on_delete:
+    if: ${{ (github.event_name == 'delete') }}
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Runs on delete"
   prep:
     runs-on: ubuntu-latest
     outputs:
