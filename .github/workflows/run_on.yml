@@ -16,3 +16,5 @@ jobs:
     - run: |
         echo '${{ (github.event_name) }} ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
         echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
+        
+# bogus
