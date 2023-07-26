@@ -14,6 +14,7 @@ jobs:
     steps:
     - run: |
         echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
+        echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
     # echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
     
   on_closed_pr:
@@ -22,5 +23,5 @@ jobs:
     steps:
     - run: |
         echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
-        
+        echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
 # bogus
