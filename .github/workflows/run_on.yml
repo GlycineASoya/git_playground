@@ -21,8 +21,8 @@ on:
     - auto_merge_enabled
     - auto_merge_disabled
 #     branches-ignore:
-    branches:
-    - 'GlycineASoya-patch-5'
+#     branches:
+#     - 'GlycineASoya-patch-5'
 
 jobs:
   on_pr:
@@ -31,8 +31,7 @@ jobs:
     steps:
     - run: |
         echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
-        echo "custom branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
-        echo "branch=${GITHUB_REF}" >> $GITHUB_STEP_SUMMARY
+        echo "Git Ref: ${GITHUB_REF} | Git SHA ${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY
         echo "head_ref=${GITHUB_HEAD_REF}" >> $GITHUB_STEP_SUMMARY
     # echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
     
@@ -42,7 +41,6 @@ jobs:
     steps:
     - run: |
         echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
-        echo "custom branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
-        echo "branch=${GITHUB_REF}" >> $GITHUB_STEP_SUMMARY
+        echo "Git Ref: ${GITHUB_REF} | Git SHA ${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY
         echo "head_ref=${GITHUB_HEAD_REF}" >> $GITHUB_STEP_SUMMARY
 # bogus
