@@ -6,7 +6,7 @@ on:
     - closed
 #     branches-ignore:
     branches:
-    - merge
+    - '!master'
 
 jobs:
   on_pr:
