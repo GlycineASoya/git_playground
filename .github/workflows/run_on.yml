@@ -4,8 +4,8 @@ on:
   pull_request:
     types:
     - closed
-    branches-ignore:
-    - master
+#     branches-ignore:
+#     - master
 
 jobs:
   on_pr:
