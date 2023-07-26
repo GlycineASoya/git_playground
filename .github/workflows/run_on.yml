@@ -10,3 +10,5 @@ jobs:
     steps:
     - run: |
         echo "Runs on closed PR" > $GITHUB_OUTPUT
+
+## test
