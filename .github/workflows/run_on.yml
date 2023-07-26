@@ -5,7 +5,7 @@ on:
     types:
     - closed
     branches-ignore:
-    - master
+    - '*master*'
 
 jobs:
   on_pr:
