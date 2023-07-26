@@ -6,7 +6,7 @@ on:
     - closed
 #     branches-ignore:
     branches:
-    - '!master'
+    - 'GlycineASoya-patch-5'
 
 jobs:
   on_pr:
