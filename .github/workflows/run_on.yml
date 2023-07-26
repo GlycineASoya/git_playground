@@ -1,6 +1,7 @@
 name: Run On Pipeline
 
 on:
+  push:
   pull_request:
 #   pull_request:
 #     types: [ closed ]
@@ -13,5 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo '${{ (github.event_name) }}' >> $GITHUB_STEP_SUMMARY
+        echo '${{ (github.event_name) }} ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
         echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
