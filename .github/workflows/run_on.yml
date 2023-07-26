@@ -2,9 +2,10 @@ name: Run On Pipeline
 
 on:
   pull_request:
-    types: [ closed ]
-    branches-ignore:
-    - master
+#   pull_request:
+#     types: [ closed ]
+#     branches-ignore:
+#     - master
 
 jobs:
   on_closed_pr:
@@ -12,4 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
+        echo '${{ (github.event_name) }}' >> $GITHUB_OUTPUT
         echo "Runs on closed PR" >> $GITHUB_OUTPUT
