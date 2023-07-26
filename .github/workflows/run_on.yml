@@ -1,0 +1,12 @@
+name: Run On Pipeline
+
+on:
+  pull_request:
+
+jobs:
+  on_closed_pr:
+    #if: ${{ (github.event_name == 'delete') }}
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Runs on closed PR" > $GITHUB_OUTPUT
