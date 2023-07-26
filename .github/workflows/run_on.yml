@@ -1,18 +1,46 @@
 name: Run On Pipeline
 
 on:
-  push:
   pull_request:
-#   pull_request:
-#     types: [ closed ]
+    types:
+    - assigned
+    - unassigned
+    - labeled
+    - unlabeled
+    - opened
+    - edited
+    - closed
+    - reopened
+    - synchronize
+    - converted_to_draft
+    - ready_for_review
+    - locked
+    - unlocked
+    - review_requested
+    - review_request_removed
+    - auto_merge_enabled
+    - auto_merge_disabled
 #     branches-ignore:
-#     - master
+#     branches:
+#     - 'GlycineASoya-patch-5'
 
 jobs:
-  on_closed_pr:
+  on_pr:
     #if: ${{ (github.event_name == 'delete') }}
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo '${{ (github.event_name) }} ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
-        echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
+        echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
+        echo "Git Ref: ${GITHUB_REF} | Git SHA ${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY
+        echo "head_ref=${GITHUB_HEAD_REF}" >> $GITHUB_STEP_SUMMARY
+    # echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
+    
+  on_closed_pr:
+    #if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-lateste
+    steps:
+    - run: |
+        echo '${{ github.event_name }} was ${{ github.event.action }}' >> $GITHUB_STEP_SUMMARY
+        echo "Git Ref: ${GITHUB_REF} | Git SHA ${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY
+        echo "head_ref=${GITHUB_HEAD_REF}" >> $GITHUB_STEP_SUMMARY
+# bogus
