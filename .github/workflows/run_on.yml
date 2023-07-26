@@ -1,10 +1,11 @@
 name: Run On Pipeline
 
 on:
-  push:
   pull_request:
     types:
     - closed
+    branches-ignore:
+    - master
 
 jobs:
   on_pr:
