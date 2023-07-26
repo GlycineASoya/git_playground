@@ -5,7 +5,8 @@ on:
     types:
     - closed
 #     branches-ignore:
-#     - '*master*'
+    branches:
+    - merge
 
 jobs:
   on_pr:
