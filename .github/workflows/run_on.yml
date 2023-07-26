@@ -4,23 +4,7 @@ on:
   push:
   pull_request:
     types:
-    - assigned
-    - unassigned
-    - labeled
-    - unlabeled
-    - opened
-    - edited
     - closed
-    - reopened
-    - synchronize
-    - converted_to_draft
-    - ready_for_review
-    - locked
-    - unlocked
-    - review_requested
-    - review_request_removed
-    - auto_merge_enabled
-    - auto_merge_disabled
 
 jobs:
   on_pr:
@@ -32,7 +16,7 @@ jobs:
     # echo "Runs on closed PR" >> $GITHUB_STEP_SUMMARY
     
   on_closed_pr:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    #if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
     - run: |
