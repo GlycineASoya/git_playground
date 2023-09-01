@@ -3,10 +3,11 @@ name: Run On Pipeline
 on:
   push:
   pull_request:
-#   pull_request:
-#     types: [ closed ]
-#     branches-ignore:
-#     - master
+    types: [ closed ]
+    branches-ignore:
+    - master
+
+# bogus
 
 jobs:
   on_closed_pr:
