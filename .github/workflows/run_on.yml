@@ -6,7 +6,7 @@ on:
     branches-ignore:
     - master
 
-# bogus
+# bogus 
 
 jobs:
   on_closed_pr:
