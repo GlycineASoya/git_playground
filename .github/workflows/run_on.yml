@@ -3,8 +3,8 @@ name: Uninstall
 on:
   pull_request:
     types: [ closed ]
-    branches-ignore:
-    - master
+    branches:
+    - !master
 
 # bogus 
 
