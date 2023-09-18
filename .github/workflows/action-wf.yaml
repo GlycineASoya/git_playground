@@ -26,7 +26,8 @@ jobs:
         echo ${GITHUB_SHA}
         ls -la ${PWD}/*/*
     - name: Set Branch as Environment Variable
-      run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
+      run: |
+        echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
     - name: Cat action
       run: |
         cat /home/runner/work/git_playground/git_playground/workflows/action.yaml
@@ -35,4 +36,4 @@ jobs:
         echo $BRANCH
     - id: action_step
       name: Action Step
-      uses: GlycineASoya/git_playground/.github/actions/the_action@${GITHUB_SHA}
+      uses: GlycineASoya/git_playground/.github/actions/the_action@"${GITHUB_SHA}"
