@@ -26,6 +26,9 @@ jobs:
         ls -la ${PWD}/*/*
     - name: Set Branch as Environment Variable
       run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
+    - name: Print BRANCH
+      run: |
+        echo $BRANCH
     - id: action_step
       name: Action Step
-      uses: GlycineASoya/git_playground/.github/actions/the_action@${{env.BRANCH}}
+      uses: GlycineASoya/git_playground/.github/actions/the_action@${{BRANCH}}
