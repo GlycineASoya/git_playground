@@ -27,6 +27,9 @@ jobs:
         ls -la ${PWD}/*/*
     - name: Set Branch as Environment Variable
       run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
+    - name: Cat action
+      run: |
+        cat /home/runner/work/git_playground/git_playground/workflows/action.yaml
     - name: Print BRANCH
       run: |
         echo $BRANCH
