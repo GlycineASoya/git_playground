@@ -18,6 +18,4 @@ jobs:
         ls -la ${PWD}
     - id: action_step
       name: Action Step
-      uses: ./actions/action
-      with:
-        branch_name: ${{ steps.extract_branch.outputs.branch }}
+      uses: ./actions/action@${{ steps.extract_branch.outputs.branch }}
