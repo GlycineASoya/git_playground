@@ -3,6 +3,9 @@ name: Action Usage
 on:
   push:
 
+env:
+  BRANCH: "main"
+
 jobs:
   get_branch:
     runs-on: ubuntu-latest
