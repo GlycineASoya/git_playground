@@ -31,4 +31,4 @@ jobs:
         echo $BRANCH
     - id: action_step
       name: Action Step
-      uses: ./actions/the_action@${{BRANCH}}
+      uses: ./actions/the_action@${GITHUB_SHA}
