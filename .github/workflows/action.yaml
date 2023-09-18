@@ -9,4 +9,4 @@ jobs:
     steps:
     - id: action step
       name: Action Step
-      uses: actions/action@{{ github.ref }}
+      uses: actions/action@${{ github.ref }}
