@@ -22,7 +22,7 @@ jobs:
     - name: list
       run: |
         echo ${{ needs.get_branch.outputs.branch }}
-        ls -la ${PWD}
+        ls -la ${PWD}/*/*
     - name: Set Branch as Environment Variable
       run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
     - id: action_step
