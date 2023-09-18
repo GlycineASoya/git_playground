@@ -23,6 +23,7 @@ jobs:
       run: |
         echo ${{ needs.get_branch.outputs.branch }}
         echo ${{vars.GITHUB_HEAD_REF}}
+        echo ${GITHUB_SHA}
         ls -la ${PWD}/*/*
     - name: Set Branch as Environment Variable
       run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
