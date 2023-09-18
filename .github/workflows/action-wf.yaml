@@ -35,4 +35,4 @@ jobs:
         echo $BRANCH
     - id: action_step
       name: Action Step
-      uses: GlycineASoya/git_playground/.github/actions/the_action@${GITHUB_SHA}
+      uses: GlycineASoya/git_playground/.github/actions/the_action@${BRAHCN}
