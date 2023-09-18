@@ -1,0 +1,12 @@
+name: Add Branch Name as First Commit Message
+
+on:
+  push:
+
+jobs:
+  action-usage:
+    runs-on: ubuntu-latest
+    steps:
+    - id: action step
+      name: Action Step
+      uses: actions/action@{{ github.ref }}
