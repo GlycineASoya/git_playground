@@ -9,4 +9,4 @@ jobs:
     steps:
     - id: action_step
       name: Action Step
-      uses: actions/action@${GITHUB_REF#refs/heads/}
+      uses: ./actions/action@${GITHUB_REF#refs/heads/}
