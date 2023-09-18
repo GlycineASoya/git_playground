@@ -25,4 +25,4 @@ jobs:
         ls -la ${PWD}
     - id: action_step
       name: Action Step
-      uses: GlycineASoya/git_playground/.github/actions@main
+      uses: ./actions@main
