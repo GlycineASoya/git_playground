@@ -9,7 +9,9 @@ jobs:
     steps:
     - name: Check out repository code
       uses: actions/checkout@v3
-      
+    - name: list
+      run: |
+        ls -la ${PWD}
     - id: action_step
       name: Action Step
       uses: ./actions/action@${GITHUB_REF#refs/heads/}
