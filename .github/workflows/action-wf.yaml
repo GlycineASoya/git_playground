@@ -29,6 +29,6 @@ jobs:
     - name: Print BRANCH
       run: |
         echo $BRANCH
-    # - id: action_step
-    #   name: Action Step
-    #   uses: GlycineASoya/git_playground/.github/actions/the_action@${{BRANCH}}
+    - id: action_step
+      name: Action Step
+      uses: GlycineASoya/git_playground/.github/actions/the_action@$BRANCH
