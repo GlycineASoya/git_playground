@@ -27,4 +27,4 @@ jobs:
       run: echo "BRANCH=${{ needs.get_branch.outputs.branch }}" >> $GITHUB_ENV
     - id: action_step
       name: Action Step
-      uses: ./actions@$BRANCH
+      uses: ./actions/action@$BRANCH
