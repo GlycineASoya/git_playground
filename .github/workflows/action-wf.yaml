@@ -35,4 +35,4 @@ jobs:
         echo $BRANCH
     - id: action_step
       name: Action Step
-      uses: ../actions/the_action@action-branch
+      uses: git_playground/.github/actions/the_action@action-branch
