@@ -1,4 +1,4 @@
-name: Add Branch Name as First Commit Message
+name: Action Usage
 
 on:
   push:
