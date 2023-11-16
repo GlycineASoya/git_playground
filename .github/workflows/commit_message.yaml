@@ -21,13 +21,21 @@ env:
     }
 
 jobs:
+  verify_changelog:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        npm install -g @geut/chan
+        chan init
   on_delete:
+    needs: verify_changelog
     if: ${{ (github.event_name == 'delete') }}
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Runs on delete"
   prep:
+    needs: verify_changelog
     runs-on: ubuntu-latest
     outputs:
       cluster: ${{ steps.prepare.outputs.cluster }}
@@ -37,7 +45,9 @@ jobs:
           echo "cluster=${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}" >> $GITHUB_OUTPUT
       
   cleanup-load-tests:
-    needs: prep
+    needs:
+      - prep
+      - verify_changelog
     runs-on: ubuntu-latest
     env:
       CLUSTER: ${{ needs.prep.outputs.cluster }}
