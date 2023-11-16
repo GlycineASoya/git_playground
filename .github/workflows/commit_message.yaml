@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
     - run: |
         npm install -g @geut/chan
-        chan added Test message
+        chan release 9.9.9
         cat CHANGELOG.md
   on_delete:
     needs: verify_changelog
