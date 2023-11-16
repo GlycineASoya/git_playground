@@ -21,13 +21,24 @@ env:
     }
 
 jobs:
+  verify_changelog:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - run: |
+        npm install -g @geut/chan
+        chan release 9.9.9
+        cat CHANGELOG.md
   on_delete:
+    needs: verify_changelog
     if: ${{ (github.event_name == 'delete') }}
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Runs on delete"
   prep:
+    needs: verify_changelog
     runs-on: ubuntu-latest
     outputs:
       cluster: ${{ steps.prepare.outputs.cluster }}
@@ -37,7 +48,9 @@ jobs:
           echo "cluster=${{ github.event_name == 'push' && 'PUSH' || fromJSON(env.CLUSTERS)[inputs.country] }}" >> $GITHUB_OUTPUT
       
   cleanup-load-tests:
-    needs: prep
+    needs:
+      - prep
+      - verify_changelog
     runs-on: ubuntu-latest
     env:
       CLUSTER: ${{ needs.prep.outputs.cluster }}
@@ -71,7 +84,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: CHANGELOG content
+        run: |
+          cat CHANGELOG.md
       - name: Get branch name
         id: get-branch-name
         #run: echo "::set-output name=branch-name::$(echo ${GITHUB_REF#refs/heads/} | sed -E 's/[^a-zA-Z0-9]+/-/g')"
