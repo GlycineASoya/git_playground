@@ -29,6 +29,7 @@ jobs:
     - run: |
         npm install -g @geut/chan
         chan added Test message
+        cat CHANGELOG.md
   on_delete:
     needs: verify_changelog
     if: ${{ (github.event_name == 'delete') }}
@@ -83,7 +84,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: CHANGELOG content
+        run: |
+          cat CHANGELOG.md
       - name: Get branch name
         id: get-branch-name
         #run: echo "::set-output name=branch-name::$(echo ${GITHUB_REF#refs/heads/} | sed -E 's/[^a-zA-Z0-9]+/-/g')"
