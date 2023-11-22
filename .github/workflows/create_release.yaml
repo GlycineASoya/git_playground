@@ -13,6 +13,8 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Create GitHub Release and Tag
       uses: actions/create-release@v1
       env:
