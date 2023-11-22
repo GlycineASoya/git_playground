@@ -49,5 +49,5 @@ jobs:
   #       with:
   #         tag_name: ${{ inputs.tag }}
   #         release_name: Release ${{ inputs.tag }}
-          body: |
-            It's been created from ${{ github.job }}
+          # body: |
+          #   It's been created from ${{ github.job }}
