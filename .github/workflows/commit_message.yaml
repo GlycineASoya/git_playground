@@ -34,7 +34,7 @@ jobs:
   run-on-bool:
     needs:
       - return-bool
-    if: ${{ needs.return-bool.outputs.continue }}
+    if: ${{ needs.return-bool.outputs.continue == true }}
     runs-on: ubuntu-latest
     steps:
     - id: get-bool
