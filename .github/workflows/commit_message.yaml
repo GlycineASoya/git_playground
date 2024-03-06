@@ -20,7 +20,27 @@ env:
       "cluster2": "cluster-2"
     }
 
-jobs:
+jobs:  
+  return-bool:
+    runs-on: ubuntu-latest
+    outputs:
+      continue: ${{ steps.get-bool.outputs.continue }}
+    steps:
+    - id: get-bool
+      run: |
+        echo "continue=true" >> $GITHUB_OUTPUT
+        echo "${{ steps.get-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+
+  run-on-bool:
+    needs:
+      - return-bool
+    if: ${{ needs.return-bool.outputs.continue }}
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-bool
+      run: |
+        echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+
   on_delete:
     if: ${{ (github.event_name == 'delete') }}
     runs-on: ubuntu-latest
