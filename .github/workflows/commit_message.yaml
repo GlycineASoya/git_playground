@@ -36,7 +36,7 @@ jobs:
         echo "${{ steps.get-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
-    if: ${{ needs.return-bool.outputs.continue }}
+    if: ${{ needs.return-bool.outputs.continue == true }}
     needs:
       - return-bool
     
