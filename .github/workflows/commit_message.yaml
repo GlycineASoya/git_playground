@@ -37,7 +37,7 @@ jobs:
         echo "${{ steps.get-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
-    if: ${{ needs.return-bool.outputs.continue == 'true' }}
+    if: ${{ needs.return-bool.outputs.continue == 'false' }}
     needs:
       - return-bool
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
 
   check-bools:
     if: |
-      '!cancelled()'
+      always()
     needs:
       - return-bool
       - run-on-bool
@@ -71,8 +71,9 @@ jobs:
 
   final-run-on-bool:
     if: |
-      '!cancelled()' &&
-      (needs.return-bool.outputs.continue == 'false' && needs.run-on-bool.result == 'skipped')
+      always() &&
+      (needs.return-bool.outputs.continue == 'false' && needs.run-on-bool.result == 'success') ||
+      (needs.return-bool.outputs.continue == 'true')
     needs:
       - return-bool
       - run-on-bool
