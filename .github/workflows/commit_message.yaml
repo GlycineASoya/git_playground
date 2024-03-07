@@ -67,7 +67,7 @@ jobs:
     - run: |
         echo "result: ${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
         echo "continue: ${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
-        echo "final: ${{ steps.get-bool.outputs.result == 'true' && needs.return-bool.outputs.continue == 'false'" >> $GITHUB_STEP_SUMMARY
+        echo "final: ${{ steps.get-bool.outputs.result == 'true' && needs.return-bool.outputs.continue == 'false' }}" >> $GITHUB_STEP_SUMMARY
 
   final-run-on-bool:
     if: |
