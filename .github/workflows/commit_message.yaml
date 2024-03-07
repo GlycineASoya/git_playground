@@ -46,10 +46,7 @@ jobs:
       run: |
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
-  final-run-on-bool:
-    if: |
-      always()
-      && (${{ contains(needs.run-on-bool.result, 'skipped') }} == 'true' && ${{needs.return-bool.outputs.continue }} == 'false' )
+  check-bools:
     needs:
       - return-bool
       - run-on-bool
@@ -64,10 +61,32 @@ jobs:
         echo "contains(needs.run-on-bool.result, 'success') == 'true'" >> $GITHUB_STEP_SUMMARY
         echo "needs.run-on-bool.result == 'success'" >> $GITHUB_STEP_SUMMARY
 
-        echo "result=${{ contains(needs.run-on-bool.result, 'success') }}=='true'" >> $GITHUB_OUTPUT
+        echo "result=${{ contains(needs.run-on-bool.result, 'skipped') }}" >> $GITHUB_OUTPUT
     - run: |
-        echo "${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
-        echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+        echo "result: ${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "continue: ${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+
+  final-run-on-bool:
+    if: |
+      always() && (${{ contains(needs.run-on-bool.result, 'skipped') }} == 'true' && ${{needs.return-bool.outputs.continue }} == 'false' )
+    needs:
+      - return-bool
+      - run-on-bool
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-bool
+      run: |
+        #echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+        
+        echo "contains(needs.run-on-bool.result, 'skipped') == 'true'" >> $GITHUB_STEP_SUMMARY
+        echo "needs.run-on-bool.result == 'skipped'" >> $GITHUB_STEP_SUMMARY
+        echo "contains(needs.run-on-bool.result, 'success') == 'true'" >> $GITHUB_STEP_SUMMARY
+        echo "needs.run-on-bool.result == 'success'" >> $GITHUB_STEP_SUMMARY
+
+        echo "result=${{ contains(needs.run-on-bool.result, 'skipped') }}" >> $GITHUB_OUTPUT
+    - run: |
+        echo "result: ${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "continue: ${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
         
   on_delete:
     if: ${{ (github.event_name == 'delete') }}
