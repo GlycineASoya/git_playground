@@ -49,10 +49,10 @@ jobs:
   final-run-on-bool:
     if: |
       (always() &&
-      (${{ needs.return-bool.outputs.continue=='false' }}  && ${{ jobs.run-on-bool.result == 'skipped'}}))
+      (${{ needs.run-on-bool.result == 'skipped'}}))
     needs:
-      - return-bool
-      #- run-on-bool
+      #- return-bool
+      - run-on-bool
     runs-on: ubuntu-latest
     steps:
     - id: get-bool
