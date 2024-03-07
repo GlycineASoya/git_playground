@@ -48,17 +48,18 @@ jobs:
 
   final-run-on-bool:
     if: |
-      (contains(needs.run-on-bool.result, 'skipped') || contains(needs.run-on-bool.result, 'success'))
+      always()
+    #&& (contains(needs.run-on-bool.result, 'skipped') || contains(needs.run-on-bool.result, 'success'))
     needs:
-      #- return-bool
+      - return-bool
       - run-on-bool
     runs-on: ubuntu-latest
     steps:
     - id: get-bool
       run: |
         #echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
-        echo "${{ needs.return-bool.result }}" >> $GITHUB_STEP_SUMMARY
-        echo "${{ needs.run-on-bool.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "contains(needs.run-on-bool.result, 'skipped')" >> $GITHUB_STEP_SUMMARY
+        echo "contains(needs.run-on-bool.result, 'success')" >> $GITHUB_STEP_SUMMARY
         
   on_delete:
     if: ${{ (github.event_name == 'delete') }}
