@@ -48,7 +48,7 @@ jobs:
 
   final-run-on-bool:
     if: |
-      (contain(needs.run-on-bool.result, 'skipped') || contain(needs.run-on-bool.result, 'success'))
+      (contains(needs.run-on-bool.result, 'skipped') || contains(needs.run-on-bool.result, 'success'))
     needs:
       #- return-bool
       - run-on-bool
