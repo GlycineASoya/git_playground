@@ -47,6 +47,8 @@ jobs:
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
   check-bools:
+    if: |
+      '!cancelled()'
     needs:
       - return-bool
       - run-on-bool
