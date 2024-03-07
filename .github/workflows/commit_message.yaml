@@ -48,8 +48,8 @@ jobs:
 
   final-run-on-bool:
     if: |
-      always() &&
-      (${{ needs.return-bool.outputs.continue=='false' }})
+      (always() &&
+      (${{ needs.return-bool.outputs.continue=='false' }}))
     needs:
       - return-bool
       - run-on-bool
