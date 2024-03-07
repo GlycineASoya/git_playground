@@ -20,6 +20,7 @@ env:
       "cluster2": "cluster-2"
     }
 
+  
 jobs:  
   return-bool:
     if: github.ref == 'refs/heads/master' || github.ref != 'refs/heads/master'
