@@ -34,7 +34,7 @@ jobs:
         
         #echo "::set-output name=continue::false" >> "$GITHUB_OUTPUT"
     - run: |
-        echo "${{ jobs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ steps.get-bool.outputs.continue1 }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
     if: ${{ needs.return-bool.outputs.continue == true }}
