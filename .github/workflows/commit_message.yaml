@@ -65,7 +65,7 @@ jobs:
         echo "contains(needs.run-on-bool.result, 'success') == 'true'" >> $GITHUB_STEP_SUMMARY
         echo "needs.run-on-bool.result == 'success'" >> $GITHUB_STEP_SUMMARY
 
-        echo "result=contains(needs.run-on-bool.result, 'skipped')" >> $GITHUB_OUTPUT
+        echo "result=${{ contains(needs.run-on-bool.result, 'skipped') }}" >> $GITHUB_OUTPUT
     - run: |
         echo "${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
         
