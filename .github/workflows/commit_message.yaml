@@ -23,7 +23,7 @@ env:
   
 jobs:  
   return-bool:
-    if: github.ref == 'refs/heads/master' || github.ref != 'refs/heads/master'
+    if: github.ref_name != 'master'
     runs-on: ubuntu-latest
     outputs:
       continue: ${{ steps.get-bool.outputs.continue }}
