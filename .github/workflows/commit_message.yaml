@@ -37,7 +37,7 @@ jobs:
         echo "${{ steps.get-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
-    if: ${{ needs.return-bool.outputs.continue }}
+    if: ${{ needs.return-bool.outputs.continue == 'true'}}
     needs:
       - return-bool
     runs-on: ubuntu-latest
@@ -46,6 +46,20 @@ jobs:
       run: |
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
+  final-run-on-bool:
+    if: |
+      always()
+    needs:
+      - return-bool
+      - run-on-bool
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-bool
+      run: |
+        #echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ needs.return-bool.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ needs.run-on-bool.result }}" >> $GITHUB_STEP_SUMMARY
+        
   on_delete:
     if: ${{ (github.event_name == 'delete') }}
     runs-on: ubuntu-latest
