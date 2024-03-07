@@ -23,7 +23,6 @@ env:
   
 jobs:  
   return-bool:
-    if: github.ref_name != 'master'
     runs-on: ubuntu-latest
     outputs:
       continue: ${{ steps.get-bool.outputs.continue }}
@@ -49,7 +48,11 @@ jobs:
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
 
   check-bools:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.return-bool.outputs.continue == 'true'
+    if: |
+      always() &&
+      github.ref_name != 'master' && 
+      (needs.return-bool.outputs.continue == 'true' ||
+      (needs.return-bool.outputs.continue == 'false' && needs.run-on-bool.result == 'success'))
     needs:
       - return-bool
       - run-on-bool
