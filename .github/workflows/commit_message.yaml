@@ -48,7 +48,7 @@ jobs:
 
   check-bools:
     if: |
-      always()
+      '!cancelled()'
     needs:
       - return-bool
       - run-on-bool
@@ -71,7 +71,7 @@ jobs:
 
   final-run-on-bool:
     if: |
-      always() &&
+      '!cancelled()' &&
       (needs.return-bool.outputs.continue == 'false' && needs.run-on-bool.result == 'skipped')
     needs:
       - return-bool
