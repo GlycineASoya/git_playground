@@ -49,7 +49,7 @@ jobs:
   final-run-on-bool:
     if: |
       always()
-      && (${{ ${{ contains(needs.run-on-bool.result, 'skipped') }} == 'true' }} && ${{ needs.return-bool.outputs.continue == 'true' }})
+    #&& (${{ ${{ contains(needs.run-on-bool.result, 'skipped') }} == 'true' }} && ${{ needs.return-bool.outputs.continue == 'true' }})
     needs:
       - return-bool
       - run-on-bool
@@ -64,7 +64,7 @@ jobs:
         echo "contains(needs.run-on-bool.result, 'success') == 'true'" >> $GITHUB_STEP_SUMMARY
         echo "needs.run-on-bool.result == 'success'" >> $GITHUB_STEP_SUMMARY
 
-        echo "result=${{ contains(needs.run-on-bool.result, 'success') }}" >> $GITHUB_OUTPUT
+        echo "result=${{ contains(needs.run-on-bool.result, 'success') }}=='true'" >> $GITHUB_OUTPUT
     - run: |
         echo "${{ steps.get-bool.outputs.result }}" >> $GITHUB_STEP_SUMMARY
         
