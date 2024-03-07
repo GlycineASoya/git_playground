@@ -72,7 +72,7 @@ jobs:
   final-run-on-bool:
     if: |
       always() &&
-      ${{ needs.return-bool.outputs.continue == 'false' && contains(needs.run-on-bool.result, 'skipped') == 'true' }}"
+      ${{ needs.return-bool.outputs.continue == 'false' && contains(needs.run-on-bool.result, 'skipped') == 'true' }}
     needs:
       - return-bool
       - run-on-bool
