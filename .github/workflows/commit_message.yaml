@@ -39,8 +39,8 @@ jobs:
         echo "${{ env.CONTINUE=='TRUE' }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
-    #if: ${{ needs.return-bool.outputs.continue == 'false' }}
-    if: ${{ env.CONTINUE }} =='TRUE'
+    if: ${{ needs.return-bool.outputs.continue == 'false' }}
+    #if: ${{ env.CONTINUE }} =='TRUE'
     needs:
       - return-bool
     runs-on: ubuntu-latest
@@ -48,6 +48,7 @@ jobs:
     - id: get-bool
       run: |
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ env.CONTINUE }}" >> $GITHUB_STEP_SUMMARY
 
   check-bools:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.return-bool.outputs.continue == 'true'
