@@ -42,7 +42,7 @@ jobs:
     - run: |
         echo "${{ steps.get-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
         echo "${{ env.GLOBAL_CONTINUE }}" >> $GITHUB_STEP_SUMMARY
-        echo "${JOB_CONTINUE}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ JOB_CONTINUE }}" >> $GITHUB_STEP_SUMMARY
 
   run-on-bool:
     if: ${{ needs.return-bool.outputs.continue == 'true' }}
