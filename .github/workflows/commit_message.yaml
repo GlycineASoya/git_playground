@@ -50,7 +50,7 @@ jobs:
     - id: get-bool
       run: |
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
-        echo "$GITHUB_ENV" >> $GITHUB_STEP_SUMMARY
+        echo "cat $GITHUB_ENV" >> $GITHUB_STEP_SUMMARY
         echo "CONTINUE_from_job: ${{ env.CONTINUE_from_job }}" >> $GITHUB_STEP_SUMMARY
 
   check-bools:
