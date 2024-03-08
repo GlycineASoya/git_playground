@@ -30,8 +30,8 @@ jobs:
     - id: get-bool
       run: |
         echo "continue=true" >> $GITHUB_OUTPUT
-        export JOB_CONTINUE="${{ env.GLOBAL_CONTINUE }}"
-        echo "JOB_CONTINUE=${{ env.GLOBAL_CONTINUE }}" >> $GITHUB_ENV
+        #export JOB_CONTINUE="${{ env.GLOBAL_CONTINUE }}"
+        #echo "JOB_CONTINUE=${{ env.GLOBAL_CONTINUE }}" >> $GITHUB_ENV
         export JOB_CONTINUE="VALUE_JOB_CONTINUE"
         echo "env.GLOBAL_CONTINUE=$JOB_CONTINUE" >> $GITHUB_ENV
         #echo "continue='false'" >> $GITHUB_OUTPUT
