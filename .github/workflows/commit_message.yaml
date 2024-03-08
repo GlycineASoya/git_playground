@@ -34,6 +34,7 @@ jobs:
         #echo "JOB_CONTINUE=${{ env.GLOBAL_CONTINUE }}" >> $GITHUB_ENV
         export JOB_CONTINUE="VALUE_JOB_CONTINUE"
         echo "GLOBAL_CONTINUE=$JOB_CONTINUE" >> $GITHUB_ENV
+        echo "VERSION='1.0'" >> $GITHUB_ENV
         #echo "continue='false'" >> $GITHUB_OUTPUT
         #echo "continue=false" >> "$GITHUB_OUTPUT"
         
@@ -54,7 +55,7 @@ jobs:
       run: |
         echo "${{ needs.return-bool.outputs.continue }}" >> $GITHUB_STEP_SUMMARY
         echo "${{ env.GLOBAL_CONTINUE }}" >> $GITHUB_STEP_SUMMARY
-        echo "${JOB_CONTINUE}" >> $GITHUB_STEP_SUMMARY
+        echo "${{ env.VERSION }}" >> $GITHUB_STEP_SUMMARY
 
   check-bools:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.return-bool.outputs.continue == 'true'
