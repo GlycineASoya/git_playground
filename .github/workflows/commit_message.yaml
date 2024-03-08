@@ -19,7 +19,7 @@ env:
       "cluster1": "cluster-1",
       "cluster2": "cluster-2"
     }
-  CONTINUE: true
+  CONTINUE: "from_env.CONTINUE"
 
 jobs:  
   return-bool:
