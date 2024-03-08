@@ -40,7 +40,7 @@ jobs:
 
   run-on-bool:
     #if: ${{ needs.return-bool.outputs.continue == 'false' }}
-    if: ${{ $CONTINUE=="TRUE"}}
+    if: ${{ CONTINUE }}=="TRUE"
     needs:
       - return-bool
     runs-on: ubuntu-latest
