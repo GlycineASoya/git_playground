@@ -40,7 +40,7 @@ jobs:
     steps:
     - #json_parsed: ${{ fromJson(env.JSON) }}
       run: |
-        echo "join( env.JSON, "," )" >> $GITHUB_OUTPUT
+        echo "join( env.JSON, ',' )" >> $GITHUB_OUTPUT
     
   return-bool:
     runs-on: ubuntu-latest
