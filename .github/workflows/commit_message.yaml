@@ -20,8 +20,28 @@ env:
       "cluster2": "cluster-2"
     }
   GLOBAL_CONTINUE: "VALUE_GLOBAL_CONTINUE"
+  JSON: |
+    [
+      "--enable-streaming-engine",
+      "--parameters tempLocation=gs://forgerock-dataflow-registry-${FDP_PROJECT}/tmp",
+      "--parameters stagingLocation=gs://forgerock-dataflow-registry-${FDP_PROJECT}/staging",
+      "--parameters amInputSubscription=projects/${FDP_PROJECT}/subscriptions/am-logs-subscription",
+      "--parameters idmInputSubscription=projects/${FDP_PROJECT}/subscriptions/am-logs-subscription",
+      "--parameters outputTopic=projects/${OLBCS_PROJECT_ID}/topics/event-history"
+    ]
 
-jobs:  
+    
+
+jobs:
+  parse_json:
+    runs-on: ubuntu-latest
+    outputs:
+      continue: ${{ steps.get-bool.outputs.continue }}
+    steps:
+    - #json_parsed: ${{ fromJson(env.JSON) }}
+      run: |
+        echo "join( env.JSON, "," )" >> $GITHUB_OUTPUT
+    
   return-bool:
     runs-on: ubuntu-latest
     outputs:
