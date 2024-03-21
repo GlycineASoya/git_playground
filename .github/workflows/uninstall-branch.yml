@@ -9,7 +9,7 @@ on:
 
 jobs:
   show-inputs:
-    runs-on: ubuntu-lagest
+    runs-on: ubuntu-latest
     steps:
     - run: |
         echo "input: ${{ inputs.branch-name }}"
