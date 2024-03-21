@@ -1,0 +1,15 @@
+name: Uninstall Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch-name:
+        description: branch name
+        required: true
+
+jobs:
+  show-inputs:
+    runs-on: ubuntu
+    steps:
+    - run: |
+        echo "input: ${{ inputs.branch-name }}"
