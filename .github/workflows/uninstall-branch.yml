@@ -15,10 +15,10 @@ jobs:
     steps:
     - id: changelog-update
       run: |
-        if [[ git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }} | grep "CHANGELOG" ]]; then
-          echo "updated=true" >> $GITHUB_OUTPUT
+        if [[ $(git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }} | grep "CHANGELOG") ]]; then
+          echo "updated='true'" >> $GITHUB_OUTPUT
         else
-          echo "updated=false" >> $GITHUB_OUTPUT
+          echo "updated='false'" >> $GITHUB_OUTPUT
         fi
 
   show-inputs:
