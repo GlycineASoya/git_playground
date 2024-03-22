@@ -20,6 +20,7 @@ jobs:
           echo "updated='true'" >> $GITHUB_OUTPUT
         else
           echo "updated='false'" >> $GITHUB_OUTPUT
+          exit 1
         fi
 
   show-inputs:
