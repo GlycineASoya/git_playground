@@ -34,8 +34,7 @@ jobs:
     - run: |
         echo $HOME
         ls -la ../../*/*/*
-        cat ../../git_playground/git_playground/workflows/action.yaml
-    - uses: ./.github/actions/the_action@master
+    - uses: ./.github/actions/the_action/
       with:
         branch-name: |
           line from show input
