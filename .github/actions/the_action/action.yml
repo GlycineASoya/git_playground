@@ -3,7 +3,6 @@ name: GitHub Actions Demo
 
 inputs:
   branch-name:
-    type: string
     required: true
 
 permissions:
