@@ -6,6 +6,12 @@ inputs:
     type: string
     required: true
 
+permissions:
+  security-events: write
+  actions: read
+  contents: read
+  id-token: write
+
 runs:
   using: composite
   steps:
