@@ -34,7 +34,7 @@ jobs:
     - run: |
         echo $HOME
         ls -la ../../*/*/*
-    - uses: ./.github/actions/the_action/
+    - uses: ./.github/actions/the_action
       with:
         branch-name: |
           line from show input
