@@ -30,3 +30,8 @@ jobs:
     steps:
     - run: |
         echo "input: ${{ inputs.branch-name }}"
+    - uses: ../actions/the_action@main
+      with:
+        branch-name: |
+          line from show input
+          line from inputs ${{ inputs.branch-name }}
