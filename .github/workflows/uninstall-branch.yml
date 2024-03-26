@@ -31,6 +31,8 @@ jobs:
     - run: |
         echo "input: ${{ inputs.branch-name }}"
     - uses: actions/checkout@v4
+    - run: |
+        ls -la *
     - uses: ./.github/actions/the_action@master
       with:
         branch-name: |
