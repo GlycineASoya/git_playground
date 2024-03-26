@@ -30,7 +30,7 @@ jobs:
     steps:
     - run: |
         echo "input: ${{ inputs.branch-name }}"
-    - uses: ../actions/the_action@main
+    - uses: .github/actions/the_action@main
       with:
         branch-name: |
           line from show input
