@@ -158,11 +158,25 @@ jobs:
     needs: cleanup-load-tests
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Install husky
       run: |
         npm install husky --save-dev >> $GITHUB_STEP_SUMMARY
-    - name: Download code
-      uses: actions/checkout@v2
+    - name: Install hooks
+      run: |
+        npx husky install >> $GITHUB_STEP_SUMMARY
+    - name: Add hooks
+      run: |
+        echo "PWD: $PWD"
+        echo "ll pwd: $(ls -la $PWD)"
+        npx husky add .husky/pre-commit "echo 'pre commit'"
+        npx husky add .husky/commit-msg "echo 'commit message'"
+    - name: Check .husky
+      run: |
+        cd .husky
+        echo "PWD: $PWD"
+        echo "ll PWD: $(ls -la $PWD)"
       
   add-commit-message:
     runs-on: ubuntu-latest
