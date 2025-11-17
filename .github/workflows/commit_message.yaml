@@ -1,7 +1,6 @@
 name: Add Branch Name as First Commit Message
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       country:
