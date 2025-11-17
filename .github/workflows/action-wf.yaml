@@ -13,7 +13,10 @@ jobs:
     steps:
     - name: Get Branch Name
       id: extract_branch
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
+      run: |
+        echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
+        echo "commit_hash=${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY
+        echo "branch_target=$branch-$commmit_hash" >> $GITHUB_STEP_SUMMARY
 
     
   # action_usage:
