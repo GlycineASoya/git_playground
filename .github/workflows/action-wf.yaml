@@ -1,6 +1,8 @@
 name: Action Usage
 
+
 on:
+  workflow_dispatch:
   push:
 
 jobs:
