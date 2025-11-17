@@ -13,7 +13,13 @@ jobs:
     steps:
     - name: Get Branch Name
       id: extract_branch
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_STEP_SUMMARY
+      run: |
+        BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        COMMIT_HASH=${GITHUB_SHA}
+        echo "$BRANCH" >> $GITHUB_STEP_SUMMARY
+        echo "$COMMIT_HASH" >> $GITHUB_STEP_SUMMARY
+        echo "BUILD=${BRANCH}-${COMMIT_HASH}" >> $GITHUB_STEP_SUMMARY
+
     
   # action_usage:
   #   runs-on: ubuntu-latest
